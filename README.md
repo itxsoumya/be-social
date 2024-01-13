@@ -1,2 +1,3 @@
 # be-social
-we will let you know about it soon......
+
+> "Unleash Your Social Spirit – Be-Social, Be You!"
