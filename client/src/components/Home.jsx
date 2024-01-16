@@ -1,35 +1,82 @@
+import pimage from '../assets/profile.jpeg'
+import profile2 from '../assets/profile2.jpeg'
+import profile3 from '../assets/profile3.jpg'
+import bb from '../assets/bb.jpg'
+import { BiDislike, BiLike } from "react-icons/bi";
+import { FaRegComment, FaShare } from "react-icons/fa";
+import { FiShare2 } from "react-icons/fi";
+
+const data = [
+    {
+        profile: pimage,
+        name: 'John Doe',
+        username: 'johndoe89',
+        content: ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque aliquid sed
+        adipisci omnis ipsa odit delectus magnam. Odit laboriosam beatae earum vitae,
+        ducimus molestiae ratione quibusdam error nulla velit facere!`
+    },
+
+    {
+        profile: profile3,
+        name: 'Jonny Bhaoo',
+        username: 'jonny_a2z',
+        content: 'Life is a gift. Just enjoy it like i do 😊'
+    },
+    {
+        profile: profile2,
+        name: 'Samu',
+        username: 'samu75',
+        content: `i think i am the only intelligent person out there 😁`
+    },
+    {
+        profile: bb,
+        name: 'Vibek Bindra',
+        username: 'Vindra10',
+        content: `Me and sandeep maheswari are really good friends. He helped me multiple times to grow in my life when ever i had any difficult situation.`
+    },
+]
+
+const Post = ({ profile, content, name, username }) => {
+    return (
+
+        <div className="p-4 border-b-2 border-zinc-300 hover:bg-slate-50 cursor-pointer flex">
+            <div className='bg-ered-200 '>
+                <div className='rounded-full w-16 h-16'>
+                    <img src={profile} className='rounded-full  h-16 w-16 cursor-pointer ' alt="nehi he bhi" />
+                </div>
+            </div>
+            <div className='pl-3 py-1'>
+                <b>{name}</b>
+                <span className='text-zinc-500'> @{username}</span>
+                <div>
+                    {content}
+                </div>
+                {/* leaving this space to render images also */}
+                <div className='flex gap-2 pt-4'>
+                    <div className='flex-grow text-2xl'><BiLike />
+                    </div>
+                    <div className='flex-grow text-2xl'><BiDislike /></div>
+                    <div className='flex-grow text-2xl'><FaRegComment />
+                    </div>
+                    <div className='flex-grow text-2xl'><FiShare2 />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    )
+}
+
+const Home = () => {
+    return (
+        <div className="border-r-2 border-l-2 border-t-2 rounded-t-md  border-b-2 rounded-b-md border-zinc-300 max-w-3xl mx-auto">
 
 
-const Home = ()=>{
-    return(
-        <div>
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit quibusdam corrupti amet iusto omnis quaerat tenetur commodi explicabo, eius incidunt consequatur? Eaque porro incidunt ex esse deserunt praesentium, architecto sapiente.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor efficitur nibh nec sollicitudin. Suspendisse ac sapien enim. Phasellus lobortis varius nisi sit amet porttitor. Duis tempus quis ligula at maximus. Suspendisse ac elit sem. Mauris at mauris porttitor, rhoncus sapien ac, dapibus felis. Duis id mauris efficitur, dapibus sem et, placerat sapien. Vestibulum tortor erat, blandit sed purus eu, rhoncus rutrum leo. Nam fermentum, risus vel dictum varius, ipsum diam vestibulum velit, et hendrerit orci justo non urna. Maecenas eget enim eu nibh gravida eleifend. Suspendisse eget molestie nisl.
+            {
+                data.map(e => <Post name={e.name} username={e.username} content={e.content} profile={e.profile} />)
+            }
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque nec diam sapien. Suspendisse ac tincidunt elit, in commodo nisi. Etiam viverra, nunc eget semper egestas, magna libero vulputate neque, eu feugiat risus ipsum non ex. Integer sed sem a sapien porta aliquet eu non magna. Etiam eu ante non massa porta egestas eget ut lacus. Pellentesque ex orci, accumsan non consectetur ac, tincidunt in ante. Sed sed odio ut erat vestibulum mollis iaculis sed lacus. Maecenas sit amet tellus eu nunc eleifend scelerisque. Maecenas non enim orci. Morbi aliquet molestie viverra.
-
-Donec semper nulla sed diam cursus, et condimentum lectus convallis. Phasellus ipsum ipsum, mollis vel finibus vel, scelerisque sed neque. Suspendisse ac arcu maximus, malesuada urna ac, aliquet velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt metus in quam viverra pulvinar. Morbi vel imperdiet turpis. Curabitur nec hendrerit urna. Cras convallis blandit purus sed semper.
-
-Sed non est sollicitudin, suscipit nunc ut, luctus magna. Vivamus ornare neque in dui mattis lobortis. Aenean eu tortor at lacus mollis volutpat ac at metus. Pellentesque dapibus faucibus suscipit. Pellentesque imperdiet lacinia erat id consectetur. Sed convallis justo id sodales molestie. In imperdiet facilisis eleifend. Phasellus scelerisque nunc at vehicula commodo. Pellentesque egestas risus eu massa iaculis gravida.
-
-Praesent fringilla dignissim porttitor. Aenean congue porta sollicitudin. Mauris sollicitudin, dui ac sagittis laoreet, odio est elementum diam, vitae tincidunt quam magna quis dui. Quisque et lacus aliquam, auctor erat sit amet, lobortis nisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer pellentesque mattis odio a tincidunt. Etiam convallis, dui vitae aliquam interdum, urna urna vestibulum lorem, quis tempus lacus lacus eu dui. Etiam gravida, justo et interdum volutpat, est eros aliquam augue, at tempus lectus enim at enim. Nam maximus vitae urna nec varius. In facilisis consequat ante a suscipit. Donec posuere faucibus arcu. Fusce auctor nisi diam, sed fermentum urna efficitur vel. Suspendisse volutpat condimentum pharetra. Ut cursus rutrum dolor id dapibus. In hac habitasse platea dictumst. Praesent eu laoreet lectus.
-
-Fusce iaculis mauris eget efficitur posuere. Donec sit amet ligula ac eros laoreet tempor ac nec arcu. Etiam non odio mollis, mollis lorem vitae, volutpat erat. Etiam in ipsum quis dolor porttitor iaculis. Suspendisse vulputate accumsan vestibulum. Curabitur faucibus bibendum massa id mollis. Curabitur facilisis, tellus ac molestie feugiat, turpis nisi imperdiet diam, vel ultricies lorem ipsum at orci. Aliquam ut tortor vel massa rhoncus bibendum sit amet maximus odio. Maecenas sit amet nunc risus. Praesent ut dolor ut justo ultrices aliquam nec id magna. Sed aliquet, erat at tempor porta, purus magna maximus mauris, luctus ultrices sem nulla a est. Pellentesque tincidunt lacus non nulla porttitor laoreet. Ut et accumsan magna, in imperdiet velit. Fusce ut ipsum vehicula, porta mauris ac, dignissim purus.
-
-Sed luctus vitae nisi quis varius. Cras dignissim libero magna, at aliquet ipsum mollis ut. Donec hendrerit id nibh ut consectetur. Morbi pharetra nulla in fermentum rhoncus. Donec blandit nisi.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor efficitur nibh nec sollicitudin. Suspendisse ac sapien enim. Phasellus lobortis varius nisi sit amet porttitor. Duis tempus quis ligula at maximus. Suspendisse ac elit sem. Mauris at mauris porttitor, rhoncus sapien ac, dapibus felis. Duis id mauris efficitur, dapibus sem et, placerat sapien. Vestibulum tortor erat, blandit sed purus eu, rhoncus rutrum leo. Nam fermentum, risus vel dictum varius, ipsum diam vestibulum velit, et hendrerit orci justo non urna. Maecenas eget enim eu nibh gravida eleifend. Suspendisse eget molestie nisl.
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque nec diam sapien. Suspendisse ac tincidunt elit, in commodo nisi. Etiam viverra, nunc eget semper egestas, magna libero vulputate neque, eu feugiat risus ipsum non ex. Integer sed sem a sapien porta aliquet eu non magna. Etiam eu ante non massa porta egestas eget ut lacus. Pellentesque ex orci, accumsan non consectetur ac, tincidunt in ante. Sed sed odio ut erat vestibulum mollis iaculis sed lacus. Maecenas sit amet tellus eu nunc eleifend scelerisque. Maecenas non enim orci. Morbi aliquet molestie viverra.
-
-Donec semper nulla sed diam cursus, et condimentum lectus convallis. Phasellus ipsum ipsum, mollis vel finibus vel, scelerisque sed neque. Suspendisse ac arcu maximus, malesuada urna ac, aliquet velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque tincidunt metus in quam viverra pulvinar. Morbi vel imperdiet turpis. Curabitur nec hendrerit urna. Cras convallis blandit purus sed semper.
-
-Sed non est sollicitudin, suscipit nunc ut, luctus magna. Vivamus ornare neque in dui mattis lobortis. Aenean eu tortor at lacus mollis volutpat ac at metus. Pellentesque dapibus faucibus suscipit. Pellentesque imperdiet lacinia erat id consectetur. Sed convallis justo id sodales molestie. In imperdiet facilisis eleifend. Phasellus scelerisque nunc at vehicula commodo. Pellentesque egestas risus eu massa iaculis gravida.
-
-Praesent fringilla dignissim porttitor. Aenean congue porta sollicitudin. Mauris sollicitudin, dui ac sagittis laoreet, odio est elementum diam, vitae tincidunt quam magna quis dui. Quisque et lacus aliquam, auctor erat sit amet, lobortis nisi. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer pellentesque mattis odio a tincidunt. Etiam convallis, dui vitae aliquam interdum, urna urna vestibulum lorem, quis tempus lacus lacus eu dui. Etiam gravida, justo et interdum volutpat, est eros aliquam augue, at tempus lectus enim at enim. Nam maximus vitae urna nec varius. In facilisis consequat ante a suscipit. Donec posuere faucibus arcu. Fusce auctor nisi diam, sed fermentum urna efficitur vel. Suspendisse volutpat condimentum pharetra. Ut cursus rutrum dolor id dapibus. In hac habitasse platea dictumst. Praesent eu laoreet lectus.
-
-Fusce iaculis mauris eget efficitur posuere. Donec sit amet ligula ac eros laoreet tempor ac nec arcu. Etiam non odio mollis, mollis lorem vitae, volutpat erat. Etiam in ipsum quis dolor porttitor iaculis. Suspendisse vulputate accumsan vestibulum. Curabitur faucibus bibendum massa id mollis. Curabitur facilisis, tellus ac molestie feugiat, turpis nisi imperdiet diam, vel ultricies lorem ipsum at orci. Aliquam ut tortor vel massa rhoncus bibendum sit amet maximus odio. Maecenas sit amet nunc risus. Praesent ut dolor ut justo ultrices aliquam nec id magna. Sed aliquet, erat at tempor porta, purus magna maximus mauris, luctus ultrices sem nulla a est. Pellentesque tincidunt lacus non nulla porttitor laoreet. Ut et accumsan magna, in imperdiet velit. Fusce ut ipsum vehicula, porta mauris ac, dignissim purus.
-
-Sed luctus vitae nisi quis varius. Cras dignissim libero magna, at aliquet ipsum mollis ut. Donec hendrerit id nibh ut consectetur. Morbi pharetra nulla in fermentum rhoncus. Donec blandit nisi.
         </div>
     )
 }

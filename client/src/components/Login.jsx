@@ -2,7 +2,7 @@
 
 const Login = ()=>{
     return(
-        <div className="flex sm:bg-slate-100 sm:p-12 p-2 sm:shadow-xl sm:rounded-lg flex-col items-center sm:gap-10 gap-4">
+        <div className="flex sm:bg-slatee-100 sm:p-12 p-2 sm:shadoww-xl sm:roundedd-lg flex-col items-center sm:gap-10 gap-4">
             <div className="sm:text-3xl text-3xl">Login</div>
             <form className="flex flex-col gap-3">
                 
