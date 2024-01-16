@@ -67,11 +67,49 @@ const Post = ({ profile, content, name, username }) => {
     )
 }
 
+const MakePostCard = ({ profile, name }) => {
+    return (
+
+        <div className="p-4 border-b-2 border-zinc-300 hover:bbg-slate-100 cursor-pointer flex sm:text-xl text-lg">
+            <div className='bg-ered-200'>
+                <div className='rounded-full sm:w-16 sm:h-16 h-14 w-14'>
+                    <img src={profile} className='rounded-full  sm:h-16 sm:w-16 h-14 w-14 cursor-pointer ' alt="nehi he bhi" />
+                </div>
+            </div>
+            <div className='pl-3 py-1'>
+                {/* <b>{name}</b> */}
+                {/* <br /> */}
+
+
+                <div>
+                    <input type="text" className='flex-grow p-4 text-3xl' placeholder='What is happening?' />
+
+                    <button className='bg-teal-600 px-9 p-3 rounded-md text-white shadow-lg'>Post</button>
+                </div>
+
+                <textarea cols="30" rows="10" placeholder='rr'></textarea>
+
+                {/* leaving this space to render images also */}
+                <div className='flex gap-2 pt-4'>
+                    <div className='flex-grow text-2xl'><BiLike />
+                    </div>
+                    <div className='flex-grow text-2xl'><BiDislike /></div>
+                    <div className='flex-grow text-2xl'><FaRegComment />
+                    </div>
+                    <div className='flex-grow text-2xl'><FiShare2 />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    )
+}
+
 const Home = () => {
     return (
         <div className="border-r-2 border-l-2 border-t-2 rounded-t-md  border-b-2 rounded-b-md border-zinc-300 max-w-3xl mx-auto">
 
-
+            <MakePostCard profile={profile3} name={'ded'} />
 
             {
                 data.map(e => <Post name={e.name} username={e.username} content={e.content} profile={e.profile} />)
