@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import pimage from '../assets/profile.jpeg'
 import profile2 from '../assets/profile2.jpeg'
 import profile3 from '../assets/profile3.jpg'
@@ -5,6 +6,8 @@ import profile3 from '../assets/profile3.jpg'
 import { BiDislike, BiLike } from "react-icons/bi";
 import { FaRegComment, FaShare } from "react-icons/fa";
 import { FiShare2 } from "react-icons/fi";
+import { RxCross2 } from "react-icons/rx";
+
 
 const data = [
     {
@@ -34,10 +37,10 @@ const data = [
 const Post = ({ profile, content, name, username }) => {
     return (
 
-        <div className="p-4 border-b-2 border-zinc-300 hover:bg-slate-100 cursor-pointer flex sm:text-xl text-lg">
+        <div className="p-4 border-b-2 border-zinc-300 hover:bg-slate-100 cursor-pointer flex sm:text-xl text-base">
             <div className='bg-ered-200'>
-                <div className='rounded-full sm:w-16 sm:h-16 h-14 w-14'>
-                    <img src={profile} className='rounded-full  sm:h-16 sm:w-16 h-14 w-14 cursor-pointer ' alt="nehi he bhi" />
+                <div className='rounded-full sm:w-16 sm:h-16 h-12 w-12'>
+                    <img src={profile} className='rounded-full  sm:h-16 sm:w-16 h-12 w-12 cursor-pointer ' alt="nehi he bhi" />
                 </div>
             </div>
 
@@ -66,10 +69,10 @@ const Post = ({ profile, content, name, username }) => {
 const MakePostCard = ({ profile, name }) => {
     return (
 
-        <div className="p-4 border-b-2 border-zinc-300 hover:bbg-slate-100 cursor-pointer flex sm:text-xl text-lg">
+        <div className="p-4 border-b-2 border-zinc-300 hover:bbg-slate-100 cursor-pointer flex sm:text-xl text-lg ">
             <div className='bg-ered-200'>
-                <div className='rounded-full sm:w-16 sm:h-16 h-14 w-14'>
-                    <img src={profile} className='rounded-full  sm:h-16 sm:w-16 h-14 w-14 cursor-pointer ' alt="nehi he bhi" />
+                <div className='rounded-full sm:w-16 sm:h-16 h-12 w-12'>
+                    <img src={profile} className='rounded-full  sm:h-16 sm:w-16 h-12 w-12 cursor-pointer ' alt="nehi he bhi" />
                 </div>
             </div>
 
@@ -77,7 +80,7 @@ const MakePostCard = ({ profile, name }) => {
                 {/* <b>{name}</b> */}
                 {/* <br /> */}
 
-                <textarea placeholder='What Happened?' className='text-lg w-full p-5 border-2 rounded-md'></textarea>
+                <textarea placeholder='What Happened?' className='w-full p-5 border-2 rounded-md focus:shadow-lg focus:outline-none focus:border-zinc-400 text-base'></textarea>
 
                 
                 
@@ -99,6 +102,19 @@ const MakePostCard = ({ profile, name }) => {
     )
 }
 
+const AlertCard = ()=>{
+    const [visible,setVisible] = useState('')
+    return(
+        <div className={'bg-green-500 fixed top-16 w-full max-w-3xl p-4 rounded-xl flex shadow-md '+visible}>
+            <div className='flex-grow'>
+                Successfully Created
+            </div>
+            <div onClick={()=>setVisible('invisible')}><RxCross2 />
+</div>
+        </div>
+    )
+}
+
 const Home = () => {
     return (
         <div className="sm:border-r-2 sm:border-l-2 sm:border-t-2 sm:rounded-t-md sm:rounded-b-md border-zinc-300 max-w-3xl mx-auto">
@@ -111,6 +127,8 @@ const Home = () => {
             {
                 data.map(e => <Post name={e.name} username={e.username} content={e.content} profile={e.profile} />)
             }
+
+            <AlertCard/>
 
 
         </div>
