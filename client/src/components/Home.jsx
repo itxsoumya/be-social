@@ -77,12 +77,12 @@ const MakePostCard = ({ profile, name }) => {
                 {/* <b>{name}</b> */}
                 {/* <br /> */}
 
-                <textarea placeholder='What Happenedd?' className='text-xl w-full p-5 border-2 rounded-md'></textarea>
+                <textarea placeholder='What Happened?' className='text-xl w-full p-5 border-2 rounded-md'></textarea>
 
                 
                 
                 <div className='flex justify-end'>
-                    <button className='bg-teal-600 px-9 p-3 rounded-md text-white shadow-lg'>Post</button>
+                    <button className='bg-teal-600 sm:px-9 sm:p-3 px-8 p-2 rounded-md text-white shadow-lg'>Post</button>
                 </div>
                 {/* <div className='flex gap-2 pt-4'>
                     <div className='flex-grow text-2xl'><BiLike />
@@ -101,7 +101,7 @@ const MakePostCard = ({ profile, name }) => {
 
 const Home = () => {
     return (
-        <div className="border-r-2 border-l-2 border-t-2 rounded-t-md rounded-b-md border-zinc-300 max-w-3xl mx-auto">
+        <div className="border-r-2 border-l-2 border-t-2 sm:rounded-t-md sm:rounded-b-md border-zinc-300 max-w-3xl mx-auto">
 
             <MakePostCard profile={profile3} name={'ded'} />
 
