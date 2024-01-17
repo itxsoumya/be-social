@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { z, ZodError } from "zod";
+import jwt from 'jsonwebtoken'
 
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const SignUpSchema = z.object({
   username: z.string().min(3).max(50),
@@ -13,6 +16,27 @@ const LoginSchema = z.object({
   email: z.string().email(),
   password: z.string()
 })
+
+const JwtTokenSchema = z.object({
+  token: z.string()
+})
+
+
+
+const isAuthorizedMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    // console.log(req.headers)
+    const validatedToken = JwtTokenSchema.parse(req.headers);
+    const validatedData = jwt.verify(validatedToken.token, JWT_SECRET!);
+    req.body.zwtDecodedData = validatedData;
+    next();
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ err: 'you are not logged in' })
+  }
+}
+
+
 
 
 const validateSignupDataMiddleware = (req: Request, res: Response, next: NextFunction) => {
@@ -47,4 +71,4 @@ const validateLoginDataMiddleware = (req: Request, res: Response, next: NextFunc
 }
 
 
-export { validateSignupDataMiddleware, validateLoginDataMiddleware };
+export { validateSignupDataMiddleware, validateLoginDataMiddleware, isAuthorizedMiddleware };

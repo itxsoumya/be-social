@@ -1,6 +1,8 @@
 import express, { Express, Request, Response } from "express";
 import dbconnect from './db'
 import router from "./routes";
+import dotenv from 'dotenv'
+dotenv.config()
 
 
 dbconnect();

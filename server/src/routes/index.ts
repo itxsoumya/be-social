@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { validateSignupDataMiddleware } from "../middleware";
+import { isAuthorizedMiddleware, validateLoginDataMiddleware, validateSignupDataMiddleware } from "../middleware";
 import handleSignup from "../controllers/handleSignup";
-
+import handleLogin from "../controllers/handleLogin";
+import { createPost, getAllPosts } from "../controllers/handlePost";
 const router = Router();
 
 router.get('/', (_req, res) => {
@@ -10,5 +11,8 @@ router.get('/', (_req, res) => {
 
 
 router.post('/signup', validateSignupDataMiddleware, handleSignup)
+router.post('/login', validateLoginDataMiddleware, handleLogin)
+router.post('/post', isAuthorizedMiddleware, createPost)
+router.get('/posts', isAuthorizedMiddleware, getAllPosts)
 
 export default router;

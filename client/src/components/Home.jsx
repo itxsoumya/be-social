@@ -77,7 +77,7 @@ const MakePostCard = ({ profile, name }) => {
                 {/* <b>{name}</b> */}
                 {/* <br /> */}
 
-                <textarea placeholder='What Happened?' className='text-xl w-full p-5 border-2 rounded-md'></textarea>
+                <textarea placeholder='What Happened?' className='text-lg w-full p-5 border-2 rounded-md'></textarea>
 
                 
                 
@@ -101,7 +101,7 @@ const MakePostCard = ({ profile, name }) => {
 
 const Home = () => {
     return (
-        <div className="border-r-2 border-l-2 border-t-2 sm:rounded-t-md sm:rounded-b-md border-zinc-300 max-w-3xl mx-auto">
+        <div className="sm:border-r-2 sm:border-l-2 sm:border-t-2 sm:rounded-t-md sm:rounded-b-md border-zinc-300 max-w-3xl mx-auto">
 
             <MakePostCard profile={profile3} name={'ded'} />
 
