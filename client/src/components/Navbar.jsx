@@ -21,7 +21,7 @@ const Navbar = () => {
     return (
         <div className="mb-16 sm:mb-20">
 
-            <div className="fixed bg-zinc-800  text-white p-3 w-full shadow-lg">
+            <div className="fixed z-20 bg-zinc-800  text-white p-3 w-full shadow-lg">
                 <div className="bg-cyan--950 max-w-3xl mx-auto flex">
                     <div className="flex-grow flex justify-start items-center text-3xl"><CgProfile />
                     </div>
