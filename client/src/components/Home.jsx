@@ -31,7 +31,7 @@ const data = [
         username: 'samu75',
         content: `i think i am the only intelligent person out there 😁`
     },
-    
+
 ]
 
 const Post = ({ profile, content, name, username }) => {
@@ -82,8 +82,8 @@ const MakePostCard = ({ profile, name }) => {
 
                 <textarea placeholder='What Happened?' className='w-full p-5 border-2 rounded-md focus:shadow-lg focus:outline-none focus:border-zinc-400 text-base'></textarea>
 
-                
-                
+
+
                 <div className='flex justify-end'>
                     <button className='bg-teal-600 sm:px-9 sm:p-3 px-8 p-2 rounded-md text-white shadow-lg'>Post</button>
                 </div>
@@ -102,15 +102,15 @@ const MakePostCard = ({ profile, name }) => {
     )
 }
 
-const AlertCard = ()=>{
-    const [visible,setVisible] = useState('')
-    return(
-        <div className={'bg-green-500 fixed top-16 w-full max-w-3xl p-4 rounded-xl flex shadow-md '+visible}>
-            <div className='flex-grow'>
+const AlertCard = () => {
+    const [visible, setVisible] = useState('')
+    return (
+        <div className={'bg-red-400 fixed top-16 w-full max-w-3xl p-4 rounded-xl flex shadow-md ' + visible}>
+            <div className='flex-grow '>
                 Successfully Created
             </div>
-            <div onClick={()=>setVisible('invisible')}><RxCross2 />
-</div>
+            <div className='flex justify-center items-center text-2xl cursor-pointer' onClick={() => setVisible('invisible')}><RxCross2 />
+            </div>
         </div>
     )
 }
@@ -127,8 +127,12 @@ const Home = () => {
             {
                 data.map(e => <Post name={e.name} username={e.username} content={e.content} profile={e.profile} />)
             }
+            {
+                data.map(e => <Post name={e.name} username={e.username} content={e.content} profile={e.profile} />)
+            }
 
-            <AlertCard/>
+
+            <AlertCard />
 
 
         </div>
