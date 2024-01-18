@@ -105,7 +105,7 @@ const MakePostCard = ({ profile, name }) => {
 const AlertCard = () => {
     const [visible, setVisible] = useState('')
     return (
-        <div className={'bg-red-400 fixed top-16 w-full max-w-3xl p-4 rounded-xl flex shadow-md ' + visible}>
+        <div className={'bg-green-400 fixed top-16 w-full max-w-3xl p-4 rounded-xl flex shadow-md ' + visible}>
             <div className='flex-grow '>
                 Successfully Created
             </div>
