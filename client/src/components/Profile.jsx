@@ -33,37 +33,39 @@ const Profile = () => {
     return (
         <div className=" sm:border-2 border-zincc-300 max-w-3xl mx-auto bg-red--50 ">
 
-            <div className='bg-indigo-400 h-48'>
+            <div className='bg-indigo-400 sm:h-48 h-40'>
                 {/* banner */}
             </div>
-            <div className='absolute  -translate-x-1/2 -translate-y-1/2 rounded-full left-1/2 w-36 h-36 z-10'>
-                <img className='rounded-full w-36 h-36' src={pimage} alt="" />
+            <div className='absolute  -translate-x-1/2 -translate-y-1/2 rounded-full left-1/2 w-32 h-32 sm:w-36 sm:h-36 z-10'>
+                <img className='rounded-full sm:w-36 sm:h-36 w-32 h-32' src={pimage} alt="" />
             </div>
 
             <div className='text-end mt-2 mr-2'>
-                <button className='bg-pink-600 p-2 rounded-full px-4 text-white shadow-lg'>Follow</button>
+                <button className='bg-pink-600 p-2 rounded-full px-4 text-white shadow-lg text-lg'>Follow</button>
             </div>
 
-            <div className='mt-10 text-2xl text-center'>Soumya Ranjan</div>
+            <div className='sm:mt-10 mt-6 text-2xl text-center'>Soumya Ranjan</div>
 
             {/* about section */}
-            <div className='pt-3 flex justify-center text-zinc-700'>
-                Life is a lie. And dont't trust it at any cost
+            <div className='pt-3 flex justify-center text-zinc-700 sm:text-lg text-base'>
+                <div className='max-w-md text-center'>
+                Life is a lie. Don't trust it
+                </div>
             </div>
 
-            <div className='flex bg-gray-100 mt-12 py-4'>
+            <div className='flex bg-gray-100 mt-12 py-4 sm:text-xl text-lg'>
                 <div className='flex-grow flex flex-col justify-center items-center'>
-                    <p>FOLLOWERS</p>
                     <p>1.9K</p>
+                    <p>FOLLOWERS</p>
                     
                 </div>
                 <div className='flex-grow flex flex-col justify-center items-center'>
-                    <p>FOLLOWING</p>
                     <p>9.8K</p>
+                    <p>FOLLOWING</p>
                 </div>
                 <div className='flex-grow flex flex-col justify-center items-center'>
-                    <p>VIEWS</p>
                     <p>53.9K</p>
+                    <p>VIEWS</p>
                 </div>
             </div>
 
