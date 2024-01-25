@@ -21,17 +21,23 @@ const Post = memo(({ profile, content, name, username }) => {
         </div>
         {/* leaving this space to render images also */}
         <div className='flex gap-2 pt-4'>
-          <div className='flex-grow text-2xl'><BiLike />
+          <div className='flex-grow text-2xl flex gap-1'> <div className=""><BiLike /></div> <div className="text-base">5.5K</div>
           </div>
-          <div className='flex-grow text-2xl'><BiDislike /></div>
-          <div className='flex-grow text-2xl'><FaRegComment />
+          <div className='flex-grow text-2xl flex gap-1'>
+            <BiDislike />
+            <div className="text-base">6.9K</div>
+
+          </div>
+          <div className='flex-grow text-2xl flex gap-1'>
+            <FaRegComment />
+            <div className="text-base">29K</div>
           </div>
           <div className='flex-grow text-2xl'><FiShare2 />
           </div>
         </div>
       </div>
 
-    </div>
+    </div >
   )
 })
 
