@@ -1,28 +1,33 @@
 from rest_framework.response import Response
 from rest_framework import viewsets
 from django.contrib.auth.models import User
-from .serializers import UserSerializers
+from .serializers import UserSerializer,SignUpSerializer
 from rest_framework import viewsets
 from rest_framework import status
+from rest_framework.decorators import action
+from drf_spectacular.utils import extend_schema
 
 
-class HelloWorld(viewsets.ViewSet):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `retrieve` actions.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     
-    def list(self,request):
-        users = User.objects.all()
-        serializer = UserSerializers(users,many=True)
+    @action(detail=False,methods=['get'])
+    def hello(self,request,pk=None):
+        return Response({'msg':'Hello form UserViewSet end point'})
+    
 
-        return Response(serializer.data)
 
+class SignUpAPI(viewsets.ViewSet):
+    serializer_class = SignUpSerializer
+    @extend_schema(responses=SignUpSerializer)
     def create(self,request):
-        serializer = UserSerializers(data=request.data)
+        serializer = SignUpSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data,status=status.HTTP_201_CREATED)
+            return Response(serializer.data)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-    
-        
-
-    
-
     
