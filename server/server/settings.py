@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from datetime import timedelta
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
-    'drf_spectacular'
+    'drf_spectacular',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -144,4 +146,16 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
+}
+
+
+SIMPLE_JWT = {
+    # Adjust the expiration time as per your requirement
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
+    # Add other settings as needed
+}
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'graph_models': True,
 }
