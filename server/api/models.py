@@ -13,14 +13,14 @@ class Tag(models.Model):
     name = models.CharField(max_length=50)
     post_id = models.ForeignKey(Post,on_delete=models.DO_NOTHING)
 
-class Like(models.Model):
+class PostLike(models.Model):
     postId = models.ForeignKey(Post,on_delete=models.CASCADE)
     userId = models.ForeignKey(User,on_delete=models.CASCADE)
 
     class Meta:
         unique_together = [['postId','userId']]
 
-class Dislike(models.Model):
+class PostDislike(models.Model):
     postId = models.ForeignKey(Post,on_delete=models.CASCADE)
     userId = models.ForeignKey(User,on_delete=models.CASCADE)
 

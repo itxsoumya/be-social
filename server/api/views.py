@@ -8,13 +8,17 @@ from rest_framework.decorators import action
 from drf_spectacular.utils import extend_schema
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from .models import Post, Like, Dislike
+from .models import Post, PostLike, PostDislike, Comment, CommentLike, CommentDislike
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 
 
-class LikesAndDislikeSerializer(serializers.Serializer):
+class LikesAndDislikeSerializerForPost(serializers.Serializer):
     postId = serializers.IntegerField()
+
+
+class LikeAndDislikeSerializerForComment(serializers.Serializer):
+    commentId = serializers.IntegerField()
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
@@ -59,23 +63,24 @@ class PostViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def like(self, request, pk=None):
         userId = request.user.id
-        likeserializer = LikesAndDislikeSerializer(data=request.data)
+        likeserializer = LikesAndDislikeSerializerForPost(data=request.data)
         if not likeserializer.is_valid():
             return Response(likeserializer.errors, status=status.HTTP_400_BAD_REQUEST)
         postId = likeserializer.data['postId']
 
-        if Like.objects.filter(postId=postId, userId=userId).exists():
+        if PostLike.objects.filter(postId=postId, userId=userId).exists():
             return Response({'detail': "You have already liked the post"})
 
         try:
             post = Post.objects.get(id=postId)
-            if Dislike.objects.filter(postId=postId, userId=userId).exists():
-                Dislike.objects.filter(postId=postId, userId=userId).delete()
+            if PostDislike.objects.filter(postId=postId, userId=userId).exists():
+                PostDislike.objects.filter(
+                    postId=postId, userId=userId).delete()
                 post.dislikes = post.dislikes - 1
 
             post.likes = post.likes+1
             post.save()
-            new_like = Like(postId=post, userId=request.user)
+            new_like = PostLike(postId=post, userId=request.user)
 
             new_like.save()
 
@@ -88,23 +93,23 @@ class PostViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def dislike(self, request, pk=None):
         userId = request.user.id
-        dislikeserializer = LikesAndDislikeSerializer(data=request.data)
+        dislikeserializer = LikesAndDislikeSerializerForPost(data=request.data)
         if not dislikeserializer.is_valid():
             return Response(dislikeserializer.errors, status=status.HTTP_400_BAD_REQUEST)
         postId = dislikeserializer.data['postId']
 
-        if Dislike.objects.filter(postId=postId, userId=userId).exists():
+        if PostDislike.objects.filter(postId=postId, userId=userId).exists():
             return Response({'detail': "You have already disliked the post"})
 
         try:
             post = Post.objects.get(id=postId)
-            if Like.objects.filter(postId=postId, userId=userId).exists():
-                Like.objects.filter(postId=postId, userId=userId).delete()
+            if PostLike.objects.filter(postId=postId, userId=userId).exists():
+                PostLike.objects.filter(postId=postId, userId=userId).delete()
                 post.likes = post.likes - 1
 
             post.dislikes = post.dislikes+1
             post.save()
-            new_like = Dislike(postId=post, userId=request.user)
+            new_like = PostDislike(postId=post, userId=request.user)
 
             new_like.save()
 
@@ -140,11 +145,39 @@ class SignUpAPI(viewsets.ViewSet):
 
 class CommentAPI(viewsets.ViewSet):
 
-    
-
     def create(self, request):
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=False, methods=['post'])
+    def like(self, request, pk=None):
+        userId = request.user.id
+        likeserializer = LikeAndDislikeSerializerForComment(data=request.data)
+        if not likeserializer.is_valid():
+            return Response(likeserializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        commentId = likeserializer.data['commentId']
+
+        if CommentLike.objects.filter(commentId=commentId, userId=userId).exists():
+            return Response({'detail': "You have already liked the comment"})
+
+        try:
+            comment = Comment.objects.get(id=commentId)
+            if CommentDislike.objects.filter(commentId=commentId, userId=userId).exists():
+                CommentDislike.objects.filter(
+                    commentId=commentId, userId=userId).delete()
+                comment.dislikes = comment.dislikes - 1
+
+            comment.likes = comment.likes+1
+            comment.save()
+            new_like = CommentLike(commentId=comment, userId=request.user)
+
+            new_like.save()
+
+            return Response({'detail': 'OK'})
+
+        except Exception as e:
+            print(e)
+            return Response({'detail': "comment does not exist"})
